@@ -1,16 +1,8 @@
 <template>
   <v-app light>
-    <!-- <v-content>
-      <div id="app">
-        <div id="nav">
-          <router-link to="/">Home</router-link> |
-          <router-link to="/about">About</router-link> |
-          <router-link to="/shops">Shops</router-link> |
-          <router-link to="/shops/1/menu">Menu</router-link> |
-          <router-link to="/order">Order</router-link>
-        </div>
-      </div>
-    </v-content> -->
+    <v-snackbar v-model="snackbar" :timeout="snackbarTimeout" top>
+      {{notificationMessage}}
+    </v-snackbar>
     <v-content>
       <router-view/>
     </v-content>
@@ -18,9 +10,77 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import WebConfig from './WebConfig'
 
-export default Vue.extend({
-  name: 'App'
-})
+@Component
+export default class App extends Vue {
+  private static readonly NOTIFICATION_READY: string = 'READY';
+
+  @Prop({ default: 'App' }) private name!: string;
+
+  private eventSource!: EventSource;
+  private notificationMessage: string = App.NOTIFICATION_READY;
+
+  private snackbar: boolean = false;
+  private snackbarTimeout: number = 7000;
+
+  mounted () {
+    this.eventSource = this.subscribeNotification()
+    this.showShopPage()
+  }
+
+  private subscribeNotification () :EventSource {
+    // console.log('subscribeNotification begin')
+
+    const dummyCustomerId: string = '100'
+    const subscribeUrl: string = WebConfig.API_SERVER_RUL + '/subscribe/customers/' + dummyCustomerId
+
+    const eventSource: EventSource = new EventSource(subscribeUrl, { withCredentials: true })
+
+    eventSource.onmessage = event => {
+      // console.log('on event')
+      if (this.notificationMessage === App.NOTIFICATION_READY) {
+        this.notificationMessage = ''
+        // 여기서 리턴하면 안되느 것 같음
+      } else {
+        this.snackbar = true
+        this.notificationMessage = event.data
+      }
+    }
+
+    eventSource.onerror = event => {
+      this.notificationMessage = App.NOTIFICATION_READY
+      this.eventSource = this.subscribeNotification()
+    }
+
+    // console.log('subscribeNotification end')
+    return eventSource
+  }
+
+  private showShopPage () {
+    this.$router.push('/shops')
+  }
+}
+
+// console.log('hello app')
+
+// const subscribe = function () {
+//   console.log('start subscribe')
+
+//   const dummyCustomerId: string = '100'
+
+//   const subscribeUrl: string = WebConfig.API_SERVER_RUL + '/subscribe/customers/' + dummyCustomerId
+
+//   const eventSource: EventSource = new EventSource(subscribeUrl, { withCredentials: true })
+
+//   eventSource.onmessage = event => {
+//     alert(event.data)
+//   }
+
+//   console.log('end subscribe')
+// }
+
+// subscribe()
+
 </script>
