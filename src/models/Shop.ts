@@ -4,39 +4,39 @@ export default class Shop {
   // _id 처럼 이름을 짓고서 get 을 통해 접근?
   public id: string;
   private name: string;
-  private image: string;
+  private img: string;
   private address: string;
-  private phoneNumber: string;
+  private phone: string;
 
   private constructor (
     id: string,
     name: string,
-    image: string,
+    img: string,
     address: string,
-    phoneNumber: string
+    phone: string
   ) {
     this.id = id
     this.name = name
-    this.image = image
+    this.img = img
     this.address = address
-    this.phoneNumber = phoneNumber
+    this.phone = phone
   }
 
   public static emptyShop: Shop = new Shop(
     '0',
     'empty_shop',
-    'empty_image',
+    'empty_img',
     'empty_address',
-    'empty_phoneNumber'
+    'empty_phone'
   )
 
   public static of (obj: any) {
     return new Shop(
       obj.id,
       obj.name,
-      obj.image,
+      obj.img,
       obj.address,
-      obj.phoneNumber
+      obj.phone
     )
   }
 
@@ -49,9 +49,9 @@ export default class Shop {
     return JSON.stringify({
       id: this.id,
       name: this.name,
-      image: this.image,
+      img: this.img,
       address: this.address,
-      phoneNumber: this.phoneNumber
+      phone: this.phone
     })
   }
 }

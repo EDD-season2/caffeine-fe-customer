@@ -1,9 +1,8 @@
 export default class MenuItem {
-  public id: string;
+  private id: string;
   private name: string;
   private nameInEnglish: string;
-  private description: string;
-  private image: string;
+  private img: string;
   private price: string;
   private category: string;
 
@@ -11,16 +10,14 @@ export default class MenuItem {
     id: string,
     name: string,
     nameInEnglish: string,
-    description: string,
-    image: string,
+    img: string,
     price: string,
     category: string
   ) {
     this.id = id
     this.name = name
     this.nameInEnglish = nameInEnglish
-    this.description = description
-    this.image = image
+    this.img = img
     this.price = price
     this.category = category
   }
@@ -29,8 +26,7 @@ export default class MenuItem {
     'empty_id',
     'empty_name',
     'empty_nameInEnglish',
-    'empty_description',
-    'empty_image',
+    'empty_img',
     'empty_price',
     'empty_category'
   )
@@ -44,8 +40,7 @@ export default class MenuItem {
       obj.id,
       obj.name,
       obj.nameInEnglish,
-      obj.description,
-      obj.image,
+      obj.img,
       obj.price,
       obj.category
     )
@@ -56,8 +51,7 @@ export default class MenuItem {
       id: this.id,
       name: this.name,
       nameInEnglish: this.nameInEnglish,
-      description: this.description,
-      image: this.image,
+      img: this.img,
       price: this.price,
       category: this.category
     })

@@ -25,7 +25,7 @@
 import { Prop, Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class CartToolbars extends Vue {
+export default class SearchToolbars extends Vue {
   @Prop() title!: string
 
   private goToPreviousPage () {
