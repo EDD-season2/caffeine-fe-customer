@@ -36,3 +36,9 @@ export default class SearchToolbars extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.search-toolbars {
+  width: 100%;
+}
+</style>

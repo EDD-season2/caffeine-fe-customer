@@ -5,7 +5,7 @@
         <template v-slot:activator="{ on }">
           <v-list-item v-on="on">
             <v-list-item-avatar size="62" tile>
-               <v-img :src="menuItem.img"></v-img>
+               <v-img :src="menuItem.image"></v-img>
                </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title><strong>{{menuItem.name}}</strong></v-list-item-title>
@@ -36,7 +36,8 @@ import MenuItem from '@/models/MenuItem'
 })
 export default class MenuListElement extends Vue {
   @Prop() private menuItem!: MenuItem;
-  @Prop({ default: false }) private dialog!: boolean;
+  // [Vue warn]: Avoid mutating a prop directly since the value will be overwritten whenever the parent component re-renders. Instead, use a data or computed property based on the prop's value. Prop being mutated: "dialog"
+  @Prop() private dialog!: boolean;
 }
 </script>
 

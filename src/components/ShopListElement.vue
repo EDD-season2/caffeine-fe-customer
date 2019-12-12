@@ -2,15 +2,18 @@
   <!-- [TODO] click 에서 함수로 부를때와 함수 레퍼런스를 부를 때의 차이? (둘다 작동함) -->
   <div class="shop" @click="selectShop()">
     <v-list-item>
-      <v-list-item-avatar size="72" tile>
-        <v-img :src="shop.img" ></v-img>
+      <v-list-item-avatar size="72" tile class="mr-4">
+        <v-img :src="shop.image" ></v-img>
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-row cols="12">
-          <v-col align-self="start"><p><strong>{{shop.name}}</strong></p></v-col>
-          <v-col align-self="end"><small>{{shop.phone}}</small></v-col>
-        </v-row>
-        <v-list-item-title>{{shop.address}}</v-list-item-title>
+        <v-container>
+          <v-row>
+            <v-col align-self="start" class="pa-1"><strong>{{shop.name}}</strong></v-col>
+          </v-row>
+          <v-row>
+            <v-col align-self="start" class="pa-1"><div class="address-text">{{shop.address}}</div></v-col>
+          </v-row>
+        </v-container>
       </v-list-item-content>
     </v-list-item>
   </div>
@@ -56,7 +59,11 @@ p {
   }
 }
 small {
-  font-size: 14px;
+  font-size: 13px;
   color: #657786;
+}
+
+div.address-text {
+  font-size: 14px;
 }
 </style>

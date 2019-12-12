@@ -1,0 +1,4 @@
+{
+  "/hello": "/menus",
+  "/shops/:shop_id/menu": "/menus?shop_id=:shop_id&singular=1"
+}

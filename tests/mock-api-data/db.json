@@ -1,0 +1,121 @@
+{
+  "shops": [{
+    "id" : 100,
+    "name" : "어디야 커피 잠실점..!!",
+    "image" : "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_%EC%84%9D%EC%B4%8C%ED%98%B8%EC%88%98.jpg?raw=true",
+    "address" : "서울특별시 송파구 석촌호수로 262 (송파동)",
+    "phoneNumber" : "02-758-8693"
+  }, {
+    "id" : 101,
+    "name" : "석촌 호수",
+    "image" : "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_%EC%86%A1%ED%8C%8C%EA%B5%AC%EC%B2%AD.jpeg?raw=true",
+    "address" : "서울특별시 송파구 오금로 142 (송파동) 블라블라블라 길어진다",
+    "phoneNumber" : "02-421-3622"
+  }],
+  "menus": [{
+    "shop_id": "100",
+    "menu": [
+      {
+        "id": "1",
+        "name": "프리미엄 바나나",
+        "nameInEnglish": "Preminum Banana",
+        "price": "1500",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_banana.jpeg?raw=true",
+        "category": "food"
+      },
+      {
+        "id": "2",
+        "name": "아메리카노",
+        "nameInEnglish": "Americano",
+        "price": "4100",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_hot_americano.jpg?raw=true",
+        "category": "beverage"
+      },
+      {
+        "id": "3",
+        "name": "아이스 아메리카노",
+        "nameInEnglish": "Ice Americano",
+        "price": "4100",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_ice_americano.jpg?raw=true",
+        "category": "beverage"
+      },
+      {
+        "id": "4",
+        "name": "카페 라떼",
+        "nameInEnglish": "Caffe Latte",
+        "price": "4600",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_hot_latte.jpg?raw=true",
+        "category": "beverage"
+      },
+      {
+        "id": "5",
+        "name": "아이스 카페 라떼",
+        "nameInEnglish": "Ice Caffe Latte",
+        "price": "4600",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_ice_latte.jpg?raw=true",
+        "category": "beverage"
+      },
+      {
+        "id": "6",
+        "name": "카라멜 마키아또",
+        "nameInEnglish": "Caramel Macchiato",
+        "price": "5600",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_hot_caramel_macchiato.jpg?raw=true",
+        "category": "beverage"
+      },
+      {
+        "id": "7",
+        "name": "카라멜 마키아또",
+        "nameInEnglish": "Ice Caramel Macchiato",
+        "price": "5600",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_ice_caramel_macchiato.jpg?raw=true",
+        "category": "beverage"
+      },
+      {
+        "id": "8",
+        "name": "자몽 허니 블랙 티",
+        "nameInEnglish": "Grapefruit Honey Black Tea",
+        "price": "5300",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_hot_grapefruit_honey_black_tea.jpg?raw=true",
+        "category": "beverage"
+      },
+      {
+        "id": "9",
+        "name": "아이스 자몽 허니 블랙 티",
+        "nameInEnglish": "Ice Grapefruit Honey Black Tea",
+        "price": "5300",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_ice_grapefruit_honey_black_tea.jpg?raw=true",
+        "category": "beverage"
+      },
+      {
+        "id": "10",
+        "name": "그린 티 라떼",
+        "nameInEnglish": "Green Tea Latte",
+        "price": "5900",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_hot_green_tea_latte.jpg?raw=true",
+        "category": "beverage"
+      },
+      {
+        "id": "11",
+        "name": "아이스 그린 티 라떼",
+        "nameInEnglish": "Ice Green Tea Latte",
+        "price": "5900",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_ice_green_tea_latte.jpg?raw=true",
+        "category": "beverage"
+      }
+    ]
+  },
+  {
+    "shop_id": "101",
+    "menu": [
+      {
+        "id": "10",
+        "name": "그린 티 라떼",
+        "nameInEnglish": "Green Tea Latte",
+        "price": "5900",
+        "image": "https://github.com/eunsukko/TIL/blob/master/201912/caffeine/pictures/starbucks_hot_green_tea_latte.jpg?raw=true",
+        "category": "beverage"
+      }
+    ]
+  }]
+}
