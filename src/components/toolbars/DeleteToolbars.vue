@@ -10,15 +10,7 @@
               </v-btn>
               <v-toolbar-title>{{title}}</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-badge
-                color="red"
-                overlap
-              >
-                <template v-slot:badge>
-                  <span v-if="0 < numCartMenuItems"> {{ numCartMenuItems }} </span>
-                </template>
-                <v-icon @click="goToCartPage" >mdi-cart</v-icon>
-              </v-badge>
+              <v-icon @click="clickDelete" >mdi-trash-can-outline</v-icon>
             </v-toolbar>
           </v-col>
         </v-row>
@@ -31,16 +23,15 @@
 import { Prop, Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class CartToolbars extends Vue {
+export default class DeleteToolbars extends Vue {
   @Prop() title!: string
-  @Prop() numCartMenuItems!: number
 
   private goToPreviousPage () {
     this.$router.back()
   }
 
-  private goToCartPage () {
-    this.$router.push({ path: `/cart` })
+  private clickDelete () {
+    this.$emit('on-delete')
   }
 }
 </script>

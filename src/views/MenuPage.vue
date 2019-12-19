@@ -1,6 +1,6 @@
 <template>
   <div class="menu-page">
-    <CartToolbars :title="'전체 메뉴'" />
+    <CartToolbars :title="'전체 메뉴'" :numCartMenuItems="numCartMenuItems"/>
     <ProgressCircular v-if="loading"/>
     <MenuList :menuItems="menuItemsFromServer" />
   </div>
@@ -16,9 +16,13 @@ import MenuList from '@/components/MenuList.vue'
 import CartToolbars from '@/components/toolbars/CartToolbars.vue'
 import ProgressCircular from '@/components/progress/ProgressCircular.vue'
 
+// [TODO] 왜 { } 사이에 있어야 되는걸까?
+import { cartEventBus } from '@/components/bus/CartEventBus'
+
 import MenuItem from '@/models/MenuItem'
 
 import WebConfig from '@/WebConfig'
+import Cart from '../models/Cart'
 
 @Component({
   components: {
@@ -33,8 +37,12 @@ export default class MenuPage extends Vue {
   private menuItems: MenuItem[] = [];
   private loading: boolean = true;
 
+  private numCartMenuItems: number = 0;
+
   mounted () {
     this.findMenuItemsFromServer()
+    this.registerUpdateCartCallback()
+    this.updateNumCartMenuItems()
   }
 
   private async findMenuItemsFromServer () {
@@ -59,6 +67,23 @@ export default class MenuPage extends Vue {
 
   private finishLoading () {
     this.loading = false
+  }
+
+  private registerUpdateCartCallback () {
+    console.log('registerUpdateCartCallback called')
+    cartEventBus.$on('update-cart', (event: Event) => {
+      console.log('update-cart event called')
+      this.updateNumCartMenuItems()
+    })
+  }
+
+  private updateNumCartMenuItems () {
+    if (localStorage.currentCartJson) {
+      const cart = Cart.ofJson(localStorage.currentCartJson)
+      this.numCartMenuItems = cart.menuItems.length
+      return
+    }
+    this.numCartMenuItems = 0
   }
 
   get menuItemsFromServer () :MenuItem[] {
