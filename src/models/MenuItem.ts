@@ -4,7 +4,7 @@ export default class MenuItem {
   private nameInEnglish: string;
   private description: string;
   private image: string;
-  private price: string;
+  public price: string;
   private category: string;
 
   private constructor (

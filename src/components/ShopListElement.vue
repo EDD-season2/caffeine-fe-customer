@@ -23,13 +23,14 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import Shop from '@/models/Shop'
+import Order from '@/models/Order'
 
 @Component
 export default class ShopListElement extends Vue {
   @Prop() private shop!: Shop;
 
   private selectShop () {
-    localStorage.currentShopJson = this.shop.toJson()
+    localStorage.currentOrderJson = Order.fromShop(this.shop).toJson()
     this.showMenuPage()
   }
 

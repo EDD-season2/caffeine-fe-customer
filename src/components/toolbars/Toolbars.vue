@@ -1,7 +1,10 @@
 <template>
-  <div class="cart-toolbars">
+  <div class="toolbars">
+    <!-- [TODO] v-card 를 썼을 때 장점이 무엇인가? -->
     <v-card>
+      <!-- v-container 를 사용하면 padding 이 추가됨, 이를 없애려고 pa-0 을 추가 -->
       <v-container fluid class="pa-0">
+        <!-- no-gutters 는 테두리를 없애기 위함 -->
         <v-row no-gutters>
           <v-col>
             <v-toolbar dense class="brown darken-1 pa-0" dark>
@@ -10,15 +13,6 @@
               </v-btn>
               <v-toolbar-title>{{title}}</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-badge
-                color="red"
-                overlap
-              >
-                <template v-slot:badge>
-                  <span v-if="0 < numCartMenuItems"> {{ numCartMenuItems }} </span>
-                </template>
-                <v-icon @click="goToCartPage" >mdi-cart</v-icon>
-              </v-badge>
             </v-toolbar>
           </v-col>
         </v-row>
@@ -31,16 +25,17 @@
 import { Prop, Component, Vue } from 'vue-property-decorator'
 
 @Component
-export default class CartToolbars extends Vue {
+export default class Toolbars extends Vue {
   @Prop() title!: string
-  @Prop() numCartMenuItems!: number
 
   private goToPreviousPage () {
     this.$router.back()
   }
-
-  private goToCartPage () {
-    this.$router.push({ path: `/cart` })
-  }
 }
 </script>
+
+<style lang="scss" scoped>
+.search-toolbars {
+  width: 100%;
+}
+</style>
