@@ -128,7 +128,7 @@ export default class OrderPage extends Vue {
 
       const response = await axios.post(this.orderPageUrl, orderCreationRequestBody, { withCredentials: true })
 
-      alert(this.findOrderId(response) + '번이 접수되었습니다. 기억해주세요.')
+      alert('주문이 접수되었습니다.')
     } catch (error) {
       console.log(error)
     } finally {
