@@ -2,7 +2,7 @@
   <div id="shop-list">
     <v-list>
       <template v-for="(shop, index) in shops">
-        <v-subheader v-if="index === 0" :key="'subheader' + index" >주문 가능한 매장</v-subheader>
+        <v-subheader v-if="index === 0" :key="'subheader' + index" >주문 가능한 매장({{shops.length}})</v-subheader>
         <v-divider :key="'divider' +index"></v-divider>
         <ShopListElement :shop="shop" :key="shop.id" />
       </template>

@@ -48,6 +48,9 @@ export default class Order {
   }
 
   get totalPrice () {
+    if (this.numMenuItems === 0) {
+      return 0
+    }
     const prices: number[] = this._menuItems.map((menuItem: MenuItem, index: number, array: MenuItem[]) => +menuItem.price)
     return prices.reduce((totalPrice: number, price: number) => totalPrice + price)
   }

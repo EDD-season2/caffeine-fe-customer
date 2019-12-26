@@ -11,6 +11,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+
+import { String, StringBuilder } from 'typescript-string-operations'
+import firebase from 'firebase/app'
+import axios from 'axios'
+
 import WebConfig from './WebConfig'
 
 @Component
@@ -27,32 +32,44 @@ export default class App extends Vue {
 
   mounted () {
     console.log('new app instance mounted')
-    this.eventSource = this.subscribeNotification()
+    this.subscribe()
     this.showShopPage()
   }
 
-  private subscribeNotification () :EventSource {
-    console.log('subscribeNotification begin')
-    const eventSource: EventSource = new EventSource(this.getSubscribeUrl(), { withCredentials: true })
+  private subscribe () {
+    const messaging = firebase.messaging()
+    Notification.requestPermission()
+      .then((permission: string) => {
+        if (permission !== 'granted') {
+          alert('알림을 허용해주세요')
+          return ''
+        }
+        return messaging.getToken()
+      })
+      .then((token: string) => {
+        if (token.length === 0) {
+          return
+        }
+        axios.post(this.subscribeUrl, { token }, { withCredentials: true })
+        console.log('token:' + token)
+        messaging.onTokenRefresh(() => {
+          console.log('refreshing token')
+          messaging.getToken()
+            .then((token: string) => {
+              // [TODO] 현재는 두번째 이후는 처리가 되고 있지 않음
+              // 조금 파악하고 고치자 (막 했다가 무한 반복 될 수 있기에)
+              axios.post(this.subscribeUrl, { token }, { withCredentials: true })
+            })
+        })
+      })
+    firebase.messaging().onMessage(payload => {
+      alert(payload.data.message)
+      this.notificationMessage = payload.data.message
+    })
+  }
 
-    eventSource.onmessage = event => {
-      console.log('on message event, message: ' + event.data)
-      if (this.notificationMessage === App.NOTIFICATION_READY) {
-        this.notificationMessage = ''
-        return
-      }
-      this.notificationMessage = event.data
-      this.snackbar = true
-    }
-
-    eventSource.onerror = event => {
-      console.log('on error event, error: ')
-      console.log(event)
-      this.notificationMessage = App.NOTIFICATION_READY
-    }
-
-    console.log('subscribeNotification end')
-    return eventSource
+  private get subscribeUrl () {
+    return WebConfig.API_SERVER_RUL + '/subscribe/customers'
   }
 
   private getSubscribeUrl () {
