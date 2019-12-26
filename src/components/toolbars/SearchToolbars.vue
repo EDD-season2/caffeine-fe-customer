@@ -13,9 +13,16 @@
               </v-btn>
               <v-toolbar-title>{{title}}</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn icon>
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
+              <v-text-field
+                v-model="searchText"
+                hide-details
+                append-icon="mdi-magnify"
+                single-line
+                hint="가게이름이나 주소를 입력하세요"
+                persistent-hint
+                @click:append="search"
+                class="ml-4"
+              ></v-text-field>
             </v-toolbar>
           </v-col>
         </v-row>
@@ -31,8 +38,14 @@ import { Prop, Component, Vue } from 'vue-property-decorator'
 export default class SearchToolbars extends Vue {
   @Prop() title!: string
 
+  private searchText: string = ''
+
   private goToPreviousPage () {
     this.$router.back()
+  }
+
+  private search () {
+    this.$emit('search-toolbars-text-updated', this.searchText)
   }
 }
 </script>
