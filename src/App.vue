@@ -63,7 +63,7 @@ export default class App extends Vue {
         })
       })
     firebase.messaging().onMessage(payload => {
-      alert(payload.data.message)
+      this.snackbar = true
       this.notificationMessage = payload.data.message
     })
   }
