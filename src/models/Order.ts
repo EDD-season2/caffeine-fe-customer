@@ -31,7 +31,6 @@ export default class Order {
   }
 
   get menuItems () {
-    console.log(typeof (this._menuItems))
     return this._menuItems
   }
 

@@ -128,7 +128,7 @@ export default class OrderPage extends Vue {
 
       const response = await axios.post(this.orderPageUrl, orderCreationRequestBody, { withCredentials: true })
 
-      alert(response)
+      alert(this.findOrderId(response) + '번이 접수되었습니다. 기억해주세요.')
     } catch (error) {
       console.log(error)
     } finally {
@@ -136,6 +136,13 @@ export default class OrderPage extends Vue {
       this.cleanCartIfUsed()
       this.showShopsPage()
     }
+  }
+
+  private findOrderId (response: any) {
+    const location: string = response.headers.location
+    const splittedLocation: string[] = location.split('/')
+
+    return splittedLocation[splittedLocation.length - 1]
   }
 
   get menuItemIds () {
